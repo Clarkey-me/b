@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .payment-container {
+            margin-top: 50px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2a9d8f;
+            margin-top: 20px;
+        }
+
+        .payment-form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-form input, .payment-form button {
+            padding: 10px;
+            font-size: 1rem;
+            width: 300px;
+            max-width: 80%;
+        }
+
+        .payment-form button {
+            background-color: #264653;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .payment-form button:hover {
+            background-color: #2a9d8f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Payment Page</h1>
+
+    <div class="payment-container">
+        <div id="totalAmount" class="total-price">
+            <!-- Total amount will be displayed here -->
+        </div>
+
+        <div class="payment-form">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="text" id="cardNumber" placeholder="Enter your card number" required>
+            <input type="text" id="expirationDate" placeholder="MM/YY" required>
+            <input type="text" id="cvv" placeholder="CVV" required>
+            <button onclick="processPayment()">Confirm Payment</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            // Get total price from localStorage
+            const totalPrice = localStorage.getItem('totalPrice');
+            if (totalPrice) {
+                document.getElementById('totalAmount').innerText = `Total Amount: $${parseFloat(totalPrice).toFixed(2)}`;
+            }
+        };
+
+        function processPayment() {
+            const name = document.getElementById('name').value.trim();
+            const cardNumber = document.getElementById('cardNumber').value.trim();
+            const expirationDate = document.getElementById('expirationDate').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+
+            if (!name || !cardNumber || !expirationDate || !cvv) {
+                alert("Please fill out all payment details.");
+                return;
+            }
+
+            // Process the payment (simulate with alert)
+            alert("Payment Successful!");
+
+            // Clear cart and total price after payment
+            localStorage.removeItem('cart');
+            localStorage.removeItem('totalPrice');
+
+            // Redirect to a confirmation or home page (simulating here)
+            window.location.href = 'userConfirmation.html';  // Or redirect to a thank you page
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Product</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Post Product</h1>
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required><br><br>
+
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" required><br><br>
+
+        <label for="productQuantity">Product Quantity:</label>
+        <input type="number" id="productQuantity" required><br><br>
+ 
+        <label for="productDescription">Product Description:</label>
+        <input type="text" id="productDescription" required><br><br>
+
+        <label for="productImage">Product Image:</label>
+        <input type="file" id="productImage" accept="image/*" required><br><br>
+
+        <button type="button" onclick="postProduct()">Post Product</button>
+    </form>
+
+    <h2>Product Details</h2>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Product details will be added here -->
+        </tbody>
+    </table>
+
+    <script src="adPostProduct.js"></script>
+</body>
+</html>

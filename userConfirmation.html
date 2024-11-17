@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .confirmation-container {
+            margin-top: 50px;
+        }
+
+        .order-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .order-details p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .order-details .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2a9d8f;
+        }
+
+        .confirmation-message {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: #2a9d8f;
+        }
+
+        .home-button {
+            padding: 12px 20px;
+            background-color: #264653;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .home-button:hover {
+            background-color: #2a9d8f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Order Confirmation</h1>
+
+    <div class="confirmation-container">
+        <div class="order-details" id="orderDetails">
+            <!-- Order details will be shown here -->
+        </div>
+
+        <div class="confirmation-message">
+            <p>Thank you for your purchase! Your order is confirmed.</p>
+        </div>
+
+        <button class="home-button" onclick="goToHomePage()">Go to Home Page</button>
+    </div>
+
+    <script>
+        window.onload = function () {
+            // Get total price and cart items from localStorage
+            const totalPrice = localStorage.getItem('totalPrice');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (totalPrice && cart.length > 0) {
+                displayOrderDetails(cart, totalPrice);
+            } else {
+                document.getElementById('orderDetails').innerHTML = '<p>No order details found.</p>';
+            }
+        };
+
+        function displayOrderDetails(cart, totalPrice) {
+            const orderDetailsContainer = document.getElementById('orderDetails');
+            let orderSummary = `<h3>Your Order</h3>`;
+            
+            cart.forEach(item => {
+                orderSummary += `
+                    <p><strong>${item.name}</strong></p>
+                    <p>Price: $${item.price.toFixed(2)} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>
+                `;
+            });
+
+            orderSummary += `<p class="total-price">Total: $${parseFloat(totalPrice).toFixed(2)}</p>`;
+            orderDetailsContainer.innerHTML = orderSummary;
+        }
+
+        function goToHomePage() {
+            // Redirect to the homepage or main shop page
+            window.location.href = 'shop.html'; // Adjust this to your actual homepage
+        }
+    </script>
+
+</body>
+</html>
